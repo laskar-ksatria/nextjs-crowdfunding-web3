@@ -17,6 +17,16 @@ export default function DisplayCampaign({
 
   return (
     <div>
+      <div className="bg-[#1c1c24] mb-5 flex justify-center items-center flex-col rounded-[10px] sm:p-8">
+        <div
+          onClick={() => Router.push("/create-campaign")}
+          className="flex justify-center cursor-pointer items-center p-[12px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]"
+        >
+          <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">
+            Start a Campaign
+          </h1>
+        </div>
+      </div>
       <h1 className="font-epilogue font-semibold text-[18px] text-white text-left">
         {title} ({campaigns.length})
       </h1>
@@ -49,11 +59,11 @@ export default function DisplayCampaign({
                   tag={camp.tag}
                   slug={camp.slug}
                   target={camp.target}
-                  deadline={"15 April 2024"}
+                  deadline={camp.deadline}
                   amountCollected={0.5}
                   handleClick={() => {
-                    alert("HELLO");
-                    // Router.push(`/campaign/${camp.slug}`);
+                    // alert("HELLO");
+                    Router.push(`/campaign/${camp.slug}`);
                   }}
                   image={camp.image}
                 />

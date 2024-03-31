@@ -31,7 +31,7 @@ export default function FundCard({
   const remainingDays = daysLeft(deadline);
   return (
     <div
-      className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
+      className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer shadow-default"
       onClick={handleClick}
     >
       <img
@@ -48,7 +48,7 @@ export default function FundCard({
             className="w-[17px] h-[17px] object-contain"
           />
           <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]">
-            {tag} {slug}
+            {tag}
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default function FundCard({
                 "https://pbs.twimg.com/profile_images/1325039769936687104/exutCyHk_400x400.jpg"
               }
               alt="user"
-              className="w-1/2 h-1/2 object-contain"
+              className="w-[30px] h-[30px] rounded-full object-contain"
             />
           </div>
           <p className="flex-1 font-epilogue font-normal text-[12px] text-[#808191] truncate">

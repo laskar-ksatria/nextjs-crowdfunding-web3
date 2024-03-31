@@ -66,7 +66,7 @@ export default function CreateCampaign() {
   };
 
   return (
-    <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
+    <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 py-4">
       {isLoading ? <Loader /> : null}
       {/* {!address ? (
         <div className="w-[100vw] h-[100vh] flex justify-center items-center fixed top-0 left-0 bg-black bg-opacity-70 overflow-y-hidden">
@@ -79,13 +79,13 @@ export default function CreateCampaign() {
           </div>
         </div>
       ) : null} */}
-      <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
+      {/* <div className="flex justify-center items-center p-[16px] sm:min-w-[380px] bg-[#3a3a43] rounded-[10px]">
         <h1 className="font-epilogue font-bold sm:text-[25px] text-[18px] leading-[38px] text-white">
           Start a Campaign
         </h1>
-      </div>
+      </div> */}
       <form
-        className="w-full mt-10 flex flex-col gap-[30px]"
+        className="w-full mt-0 flex flex-col gap-[30px]"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-wrap gap-[40px]">
