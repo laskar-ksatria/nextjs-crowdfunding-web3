@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.linear-gradient {
+  background: linear-gradient(
+    179.14deg,
+    rgba(32, 18, 63, 0) -7.14%,
+    #000000 87.01%
+  );
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.8);
+}
+
+.shadow-box {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.connect {
+  height: 50px !important;
+  width: 130px !important;
+  background-color: #1c1c24 !important;
+  color: white !important;
+  font-family: "Epilogue";
+  border: 0.5px solid white !important;
+  /* background: #8c6dfd !important; */
+}
+
+radio-box {
+  margin: 0.4rem;
+}
