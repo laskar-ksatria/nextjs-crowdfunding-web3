@@ -37,7 +37,7 @@ export default function FundCard({
       <img
         src={image}
         alt="fund"
-        className="w-full h-[158px] object-cover rounded-[15px]"
+        className="w-full h-[220px] object-cover rounded-t-[15px]"
       />
 
       <div className="flex flex-col p-4">
