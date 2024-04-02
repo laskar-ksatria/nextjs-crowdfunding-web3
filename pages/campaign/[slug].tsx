@@ -11,10 +11,10 @@ import CustomButton from "@/components/custom-button";
 
 export default function Campaign() {
   const Router = useRouter();
-  const { getCampaign, contract } = useStateContext();
+  const { getCampaign, contract, donate } = useStateContext();
   // States ********************************************************************** //
   const [isLoading, setIsLoading] = useState(true);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [donators, setDonators] = useState([]);
   const [campaign, setCampaign] = useState(null);
   // States ********************************************************************** //
@@ -24,6 +24,15 @@ export default function Campaign() {
     isLoading: dataLoading,
     error,
   } = useContractRead(contract, "campaigns", [Router.query?.slug]);
+
+  // ----------------------------------------------------------------------------
+  // Functions
+  // ----------------------------------------------------------------------------
+  const handleDonateCampaign = async () => {
+    const slug = data?.slug;
+    const response = await donate(slug, amount);
+    console.log(response);
+  };
 
   useEffect(() => {
     console.log(data);
@@ -55,50 +64,50 @@ export default function Campaign() {
               </div>
             </div>
           </div>
-          <div className="grid w-full grid-cols-3 mt-5">
+          <div className="grid w-full grid-cols-3 max-lg:grid-cols-1 mt-5">
             <div className="col-span-2">
-              <div className="w-full flex gap-4">
+              <div className="w-full flex gap-4 max-lg:justify-between">
                 <CountBox title="Days Left" value="14" />
                 <CountBox title={`Raised of 3`} value={"0.5"} />
                 <CountBox title="Total Backers" value={"10"} />
               </div>
-              <div className="mt-5">
+              <div className="mt-8">
                 <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
                   Creator
                 </h4>
                 <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
                   <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer">
                     <img
-                      src="/img/thirdweb.png"
+                      src="https://pbs.twimg.com/media/F2YGo49aQAAa7hW.jpg"
                       alt="user"
-                      className="w-[60%] h-[60%] object-contain"
+                      className="w-[52px] h-[52px] object-contain rounded-full"
                     />
                   </div>
                   <div>
                     <h4 className="font-epilogue font-semibold text-[14px] text-white break-all">
                       {data.owner}
                     </h4>
-                    <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">
+                    <p className="mt-1 font-epilogue font-normal text-[12px] text-[#808191]">
                       10 Campaigns
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="mt-5">
-                <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
+              <div className="mt-8">
+                <h3 className="font-epilogue font-semibold text-[18px] text-white uppercase">
                   Story
-                </h4>
-                <div className="mt-[20px]">
+                </h3>
+                <div className="mt-1">
                   <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
                     {data.description}
                   </p>
                 </div>
               </div>
-              <div className="mt-5">
+              <div className="mt-8">
                 <h4 className="font-epilogue font-semibold text-[18px] text-white uppercase">
                   Donators
                 </h4>
-                <div className="mt-[20px] flex flex-col gap-4">
+                <div className="mt-1 flex flex-col gap-4">
                   <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
                     No donators yet. Be the first one!
                   </p>
@@ -116,7 +125,7 @@ export default function Campaign() {
                     placeholder="ETH 0.1"
                     step="0.01"
                     className="w-full py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px]"
-                    // value={amount}
+                    value={amount}
                     // onChange={(e) => setAmount(e.target.value)}
                   />
 
@@ -134,7 +143,9 @@ export default function Campaign() {
                     btnType="button"
                     title="Fund Campaign"
                     styles="w-full bg-[#8c6dfd]"
-                    handleClick={() => {}}
+                    handleClick={() => {
+                      handleDonateCampaign();
+                    }}
                   />
                 </div>
               </div>

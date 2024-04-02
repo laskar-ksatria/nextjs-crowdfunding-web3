@@ -7,7 +7,7 @@ export default function Layout({ children }) {
       <div>
         <SideBar />
       </div>
-      <div className="flex-1 relative max-sm:w-full max-w-[1280px] mx-auto sm:pr-5 pb-10">
+      <div className="flex-1 max-lg:px-5 relative max-sm:w-full max-w-[1280px] mx-auto sm:pr-5 pb-10">
         <Navbar />
         {children}
       </div>

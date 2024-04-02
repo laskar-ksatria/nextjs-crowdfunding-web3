@@ -9,6 +9,7 @@ import CustomButton from "@/components/custom-button";
 import { toast } from "react-toastify";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
+import { checkIfImage } from "@/lib/utils";
 
 // Utils
 import { useStateContext } from "@/lib/context";
@@ -31,38 +32,38 @@ export default function CreateCampaign() {
   const [tag] = useState(["Education", "Nature", "Humanity", "Others"]);
   const [selectTag, setSelectTag] = useState("Education");
   // Functions
-
   const handleFormFieldChange = (
     fieldName: string,
     e: { target: { value: any } }
   ) => {
-    console.log(e.target.value);
-    //  2024-05-30
-    console.log(new Date("2024-05-30").getTime());
     setForm({ ...form, [fieldName]: e.target.value });
   };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setIsLoading(true);
-    const data = await publishCampaign({
-      ...form,
-      tag: selectTag,
-      target: ethers.utils.parseUnits(form.target, 18),
+
+    checkIfImage(form.image, async (exists: boolean) => {
+      if (exists) {
+        setIsLoading(true);
+        const data = await publishCampaign({
+          ...form,
+          tag: selectTag,
+          target: ethers.utils.parseUnits(form.target, 18),
+        });
+        if (data) {
+          toast.success("Success added", {
+            onClose(props) {
+              Router.push("/");
+            },
+          });
+        } else {
+          toast.error("Error Addedd");
+          setIsLoading(false);
+        }
+      } else {
+        toast.error("Provide valid image URL");
+      }
     });
-    if (data) {
-      setForm({
-        title: "",
-        description: "",
-        target: "",
-        deadline: "",
-        image: "",
-      });
-      toast.success("Success added");
-    } else {
-      toast.error("Error Addedd");
-    }
-    setIsLoading(false);
   };
 
   return (

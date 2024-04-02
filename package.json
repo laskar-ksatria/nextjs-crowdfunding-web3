@@ -11,6 +11,7 @@
   "dependencies": {
     "@thirdweb-dev/react": "^4",
     "@thirdweb-dev/sdk": "^4",
+    "axios": "^1.6.8",
     "ethers": "^5.7.2",
     "next": "14.1.4",
     "react": "^18",
